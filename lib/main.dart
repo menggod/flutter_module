@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as prefix0;
 
 import 'first_page.dart';
 import 'home_page.dart';
@@ -15,8 +16,11 @@ Widget getRouter(String name) {
     default:
       return Center(
         child: Text(
-          "unkonw route :$name",
+          "mf flutter module ->unkonw route :$name",
           textDirection: TextDirection.ltr,
+          style: prefix0.TextStyle(
+            color: Colors.red
+          ),
         ),
       );
   }
