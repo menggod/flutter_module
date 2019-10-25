@@ -16,6 +16,8 @@ description: A new Flutter module.
 # a `flutter run` or a `flutter make-host-app-editable`. It has no impact
 # on any other native host app that you embed your Flutter project into.
 version: 1.0.0+1
+author: menggod <menggod@126.com>
+
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
