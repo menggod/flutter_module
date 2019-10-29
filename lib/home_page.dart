@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_module/first_page.dart';
+import 'package:toast/toast.dart';
+
+import 'widget/tab_box.dart';
+
+void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {},
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or press Run > Flutter Hot Reload in a Flutter IDE). Notice that the
-        // counter didn't reset back to zero; the application is not restarted.
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData.dark(),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -52,6 +50,17 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+
+  void _jumpOtherPage() {
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return new FadeAppTest();
+    }));
+  }
+
+  void _processClick(){
+    Toast.show("double", context,
+        duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
   }
 
   @override
@@ -93,13 +102,26 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.display1,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .display1,
             ),
+            TapBoxA(),
+            Text.rich(TextSpan(children: [
+              TextSpan(text: "home: "),
+              TextSpan(
+                  text: "http://menggod.cn",
+                  style: TextStyle(color: Colors.blue),
+//                  recognizer:Toast.show("double", context, duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+              )
+            ]))
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+//        onPressed: _incrementCounter,
+        onPressed: _jumpOtherPage,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

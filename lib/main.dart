@@ -13,6 +13,8 @@ Widget getRouter(String name) {
       return MyApp();
     case"animator":
       return FadeAppTest();
+    case "first_page":
+      return FadeAppTest();
     default:
       return Center(
         child: Text(
