@@ -10,7 +10,23 @@ const _themes = <MaterialColor>[
 ];
 
 class Global {
+  BuildContext context;
 
+
+
+
+  static Global _global;
+
+  static Global getInstance() {
+    if (_global == null) {
+      _global = Global();
+    }
+    return _global;
+  }
+
+  void init(BuildContext context){
+    this.context =context;
+  }
 
 
 }
