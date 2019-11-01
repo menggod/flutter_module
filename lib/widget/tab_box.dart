@@ -19,7 +19,9 @@ class _TapBoxAState extends State<TapBoxA> {
     Toast.show("double", context,
         duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
     _handleTap();
+
   }
+
 
   @override
   Widget build(BuildContext context) {
