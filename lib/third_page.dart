@@ -67,3 +67,20 @@ class _ThirdPageState extends State<ThirdHomePage> {
   }
 }
 
+class Live extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      appBar:  AppBar(
+        title: new Text('哈哈'),
+      ),
+      body: Container(
+        child:    ListView(
+            children: <Widget>[
+              //TODO:这里写子控件。
+            ],
+          ),
+      ),
+    );
+  }
+}
