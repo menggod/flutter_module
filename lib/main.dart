@@ -1,11 +1,13 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_module/net_test_page.dart';
-import 'package:flutter_module/second_page.dart';
+import 'package:flutter_module/page/net_test_page.dart';
+import 'package:flutter_module/page/second_page.dart';
 
-import 'first_page.dart';
-import 'home_page.dart';
-import 'third_page.dart';
+import 'page/first_page.dart';
+import 'page/fourth_page.dart';
+import 'page/home_page.dart';
+import 'page/third_page.dart';
+
 
 void main() => runApp(getRouter(window.defaultRouteName));
 
@@ -30,7 +32,8 @@ class MyAppList extends StatelessWidget {
         "first_page": (context) => FadeAppTest(),
         "second_page": (context) => FadeAppTest2(),
         "third_page": (context) => ThirdPage(),
-        "net_test_page": (context) => NetTestPage()
+        "net_test_page": (context) => NetTestPage(),
+        "fourth_page": (context) => TestPage()
       },
       onUnknownRoute: (RouteSettings setting) =>
           MaterialPageRoute(builder: (context) => UnknownPage()),
@@ -43,14 +46,12 @@ class MyAppList extends StatelessWidget {
       home: Scaffold(
         body: ListView(
           children: <Widget>[
-            ItemTitle(
-              "first_page",
-              color: Colors.blue,
-            ),
-            ItemTitle("second_page",subTitle: "fade 动画"),
+            ItemTitle("first_page", color: Colors.blue),
+            ItemTitle("second_page", subTitle: "fade 动画"),
             ItemTitle("third_page", color: Colors.cyan),
             ItemTitle("net_test_page",
-                color: Colors.amberAccent, subTitle: "网络测试")
+                color: Colors.amberAccent, subTitle: "网络测试"),
+            ItemTitle("fourth_page", color: Colors.deepOrange)
           ],
         ),
       ),
@@ -82,11 +83,12 @@ class ItemTitle extends StatelessWidget {
       child: Container(
         color: _color ?? Colors.pinkAccent,
         child: ListTile(
-            leading: Icon(_iconData ?? Icons.settings),
-            title: Text(_title),
-            trailing: Text(_subTitle ?? ""),
+          leading: Icon(_iconData ?? Icons.settings),
+          title: Text(_title),
+          trailing: Text(_subTitle ?? ""),
+        ),
       ),
-    ),);
+    );
   }
 }
 

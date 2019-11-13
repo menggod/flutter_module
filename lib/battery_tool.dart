@@ -3,7 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_module/home_page.dart';
+import 'package:flutter_module/page/home_page.dart';
 
 class HomePageState extends State<MyHomePage> {
   static const platform = const MethodChannel('samples.flutter.dev/battery');

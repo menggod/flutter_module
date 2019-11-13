@@ -2,25 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_module/home_page.dart';
-import 'package:toast/toast.dart';
 
-void main() =>
-    runApp(MaterialApp(
-      home: TestPage(),
-      routes: <String, WidgetBuilder>{
-        'router/home_page': (_) => new MyHomePage(title: "跳转过来的")
-      },
-    ));
 
+// ignore: must_be_immutable
 class TestPage extends StatelessWidget {
   BuildContext _context;
-
   var _value;
 
   void _handleClick(String text) {
-//    Toast.show(text, _context,
-//        duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
     Navigator.of(_context).pushNamed('router/home_page');
     print("menggod--->" + text);
   }

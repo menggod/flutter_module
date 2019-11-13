@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_module/first_page.dart';
+import 'package:flutter_module/page/first_page.dart';
 import 'package:toast/toast.dart';
 
-import 'widget/tab_box.dart';
+import '../widget/tab_box.dart';
 
 void main() => runApp(new MyApp());
 

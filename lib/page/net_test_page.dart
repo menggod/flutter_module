@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_module/bean_factory.dart';
 import 'package:flutter_module/common/net.dart';
 
-import 'common/global.dart';
+import '../common/global.dart';
+import '../model/bing_img_bean.dart';
 
 final String url =
     "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN";
@@ -35,10 +37,15 @@ class _NetTestPageState extends State<NetTestPage> with WidgetsBindingObserver {
   }
 
   void _loadData() {
-    var response = HttpManager.getInstance().getSimple(url);
-    setState(() {
-      _response = response.data.toString();
-    });
+    try {
+      var response = HttpManager.getInstance().getSimple(url);
+      BingImgBean bingImgBean = BeanFactory.generateOBJ<BingImgBean>(response.data.toString());
+      setState(() {
+            _response = response.data.toString();
+          });
+    } catch (e) {
+      print(e);
+    }
   }
 
 
