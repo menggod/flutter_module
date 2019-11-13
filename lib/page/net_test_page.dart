@@ -80,14 +80,13 @@ class _NetTestPageState extends State<NetTestPage> with WidgetsBindingObserver {
                 Visibility(
                   visible: _response == null ? false : true,
                   child: Stack(
+                    alignment: Alignment.bottomRight,
                     children: <Widget>[
                       Image.network(_imageUrl ?? ""),
-                      Align(
-                          alignment: Alignment.bottomRight,
-                          child: Text(
+                      Text(
                         _response ?? "",
-                        style: TextStyle(fontSize: 10, color: Color(0xff81d8d0)),
-                      ))
+                        style: TextStyle(fontSize: 8, color: Color(0xff81d8d0)),
+                      )
                     ],
                   ),
                 ),
