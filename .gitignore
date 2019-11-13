@@ -39,3 +39,10 @@ build/
 .android/
 .ios/
 .flutter-plugins
+/pubspec.lock
+.gradle/
+build.gradle
+gradle/
+gradlew
+gradlew.bat
+local.properties
