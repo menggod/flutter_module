@@ -1,14 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_module/bean_factory.dart';
-import 'package:flutter_module/common/net.dart';
 
-import '../common/global.dart';
 import '../model/bing_img_bean.dart';
 
-final String url =
-    "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN";
-final String ganhuo_url = "http://gank.io/api/data/福利/6/1";
+const String url = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN";
+const String ganhuo_url = "http://gank.io/api/data/福利/6/1";
+const String img_url =
+    "http://cn.bing.com/th?id=OHR.BerlinerMauerFall_ZH-CN1154604596_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp";
 
 void main() => runApp(NetTestPage());
 
@@ -21,7 +19,7 @@ class _NetTestPageState extends State<NetTestPage> with WidgetsBindingObserver {
 //  Response _response;
   String _response;
   bool _testBool = false;
-
+  String _imageUrl;
 
   @override
   void initState() {
@@ -29,25 +27,24 @@ class _NetTestPageState extends State<NetTestPage> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
   }
 
-
   @override
   void dispose() {
     super.dispose();
     WidgetsBinding.instance.removeObserver(this);
   }
 
-  void _loadData() {
+  Future _loadData() async {
     try {
-      var response = HttpManager.getInstance().getSimple(url);
-      BingImgBean bingImgBean = BeanFactory.generateOBJ<BingImgBean>(response.data.toString());
+      var response = await Dio().get(url);
+      var bingImgBean = BingImgBean.fromJson(response.data);
       setState(() {
-            _response = response.data.toString();
-          });
+        _response = bingImgBean.images[0].copyright;
+        _imageUrl = "http://cn.bing.com" + bingImgBean.images[0].url;
+      });
     } catch (e) {
       print(e);
     }
   }
-
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -66,7 +63,7 @@ class _NetTestPageState extends State<NetTestPage> with WidgetsBindingObserver {
     return MaterialApp(
       home: Scaffold(
         body: Container(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(40),
           child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,7 +79,17 @@ class _NetTestPageState extends State<NetTestPage> with WidgetsBindingObserver {
                 ),
                 Visibility(
                   visible: _response == null ? false : true,
-                  child: Text(_response == null ? "" : _response),
+                  child: Stack(
+                    children: <Widget>[
+                      Image.network(_imageUrl ?? ""),
+                      Align(
+                          alignment: Alignment.bottomRight,
+                          child: Text(
+                        _response ?? "",
+                        style: TextStyle(fontSize: 10, color: Color(0xff81d8d0)),
+                      ))
+                    ],
+                  ),
                 ),
               ],
             ),

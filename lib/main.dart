@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_module/page/net_test_page.dart';
 import 'package:flutter_module/page/second_page.dart';
 
@@ -9,7 +10,12 @@ import 'page/home_page.dart';
 import 'page/third_page.dart';
 
 
-void main() => runApp(getRouter(window.defaultRouteName));
+void main() {
+  debugPaintSizeEnabled = false;
+  debugPaintBaselinesEnabled = false;
+  debugPaintLayerBordersEnabled = true;
+  runApp(getRouter(window.defaultRouteName));
+}
 
 Widget getRouter(String name) {
   switch (name) {
