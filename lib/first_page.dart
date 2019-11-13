@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 void main() => runApp(new FadeAppTest());
 
 class FadeAppTest extends StatelessWidget {
@@ -33,8 +34,8 @@ class _MyFadeTestState extends State<MyFadeTest> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+    return MaterialApp(
+      home: Center(
         child: Container(
           child: FadeTransition(
             opacity: curvedAnimation,
@@ -43,13 +44,6 @@ class _MyFadeTestState extends State<MyFadeTest> with TickerProviderStateMixin {
             ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: "fade",
-        child: Icon(Icons.face),
-        onPressed: () {
-          controller.forward();
-        },
       ),
     );
   }

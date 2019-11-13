@@ -42,9 +42,9 @@ class HttpManager {
     return processResponse(response);
   }
 
-  dynamic getSimple(String path, Map<String, dynamic> map) async {
-    var response = await getInstance()._dio.get(path, queryParameters: map);
-    return response;
+  dynamic getSimple(String path, {Map<String, dynamic> map}) async {
+    Response response = await getInstance()._dio.get(path, queryParameters: map);
+   return response;
   }
 
   Future<Map<String, dynamic>> post(

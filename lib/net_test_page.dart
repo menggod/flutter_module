@@ -2,12 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_module/common/net.dart';
 
-
 import 'common/global.dart';
 
-final String url = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN";
+final String url =
+    "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN";
 final String ganhuo_url = "http://gank.io/api/data/福利/6/1";
-
 
 void main() => runApp(NetTestPage());
 
@@ -16,23 +15,47 @@ class NetTestPage extends StatefulWidget {
   _NetTestPageState createState() => _NetTestPageState();
 }
 
+class _NetTestPageState extends State<NetTestPage> with WidgetsBindingObserver {
+//  Response _response;
+  String _response;
+  bool _testBool = false;
 
-class _NetTestPageState extends State<NetTestPage> {
 
-
-  void _loadData() async {
-    try {
-      Response response =  HttpManager.getInstance().getSimple(url, {});
-      print(response);
-    } catch (e) {
-      print(e);
-    }
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
   }
 
 
   @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  void _loadData() {
+    var response = HttpManager.getInstance().getSimple(url);
+    setState(() {
+      _response = response.data.toString();
+    });
+  }
+
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+  }
+
+  void _loadData2() async {
+    Response future = await Dio().get(url);
+    setState(() {
+      _response = future.data.toString();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Global.getInstance().init(context);
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -43,11 +66,17 @@ class _NetTestPageState extends State<NetTestPage> {
               children: <Widget>[
                 RaisedButton(
                   child: Text("获取bing图片"),
-                  onPressed: (){
-//                    _loadData();
-                    Toast.show("哈哈",context);
+                  onPressed: () {
+                    _loadData();
+                    setState(() {
+                      _testBool = !_testBool;
+                    });
                   },
-                )
+                ),
+                Visibility(
+                  visible: _response == null ? false : true,
+                  child: Text(_response == null ? "" : _response),
+                ),
               ],
             ),
           ),
@@ -56,40 +85,3 @@ class _NetTestPageState extends State<NetTestPage> {
     );
   }
 }
-
-
-
-class Toast {
-  static void show(String message, BuildContext context, {int duration}) {
-    OverlayEntry entry = OverlayEntry(builder: (context) {
-      return Container(
-        color: Colors.transparent,
-        margin: EdgeInsets.only(
-          top: MediaQuery.of(context).size.height * 0.7,
-        ),
-        alignment: Alignment.center,
-        child: Center(
-          child: Container(
-            color: Colors.grey,
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Material(
-                child: Text(
-                  message,
-                  style: TextStyle(),
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-    });
-
-    Overlay.of(context).insert(entry);
-    Future.delayed(Duration(seconds: duration ?? 2)).then((value) {
-      // 移除层可以通过调用OverlayEntry的remove方法。
-      entry.remove();
-    });
-  }
-}
-

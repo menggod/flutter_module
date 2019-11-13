@@ -18,10 +18,11 @@ description: A new Flutter module.
 version: 1.0.0+1
 author: menggod <menggod@126.com>
 
-
+# dart 运行环境区间
 environment:
   sdk: ">=2.1.0 <3.0.0"
 
+#flutter依赖库
 dependencies:
   flutter:
     sdk: flutter
@@ -37,6 +38,7 @@ dependencies:
   fluttertoast: ^3.1.3
   common_utils: ^1.1.3
   fluro: ^1.5.1
+
 
 dev_dependencies:
   flutter_test:

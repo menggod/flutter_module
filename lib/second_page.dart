@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(new FadeAppTest());
+  runApp(new FadeAppTest2());
 }
 
-class FadeAppTest extends StatelessWidget {
+class FadeAppTest2 extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
