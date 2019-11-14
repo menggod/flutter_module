@@ -63,19 +63,21 @@ class _NetTestPageState extends State<NetTestPage> with WidgetsBindingObserver {
     return MaterialApp(
       home: Scaffold(
         body: Container(
-          padding: EdgeInsets.all(40),
           child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                RaisedButton(
-                  child: Text("获取bing图片"),
-                  onPressed: () {
-                    _loadData();
-                    setState(() {
-                      _testBool = !_testBool;
-                    });
-                  },
+                Container(
+                  padding: EdgeInsets.all(40),
+                  child: RaisedButton(
+                    child: Text("获取bing图片"),
+                    onPressed: () {
+                      _loadData();
+                      setState(() {
+                        _testBool = !_testBool;
+                      });
+                    },
+                  ),
                 ),
                 Visibility(
                   visible: _response == null ? false : true,
@@ -85,6 +87,7 @@ class _NetTestPageState extends State<NetTestPage> with WidgetsBindingObserver {
                       Image.network(_imageUrl ?? ""),
                       Text(
                         _response ?? "",
+                        textAlign: TextAlign.right,
                         style: TextStyle(fontSize: 8, color: Color(0xff81d8d0)),
                       )
                     ],
