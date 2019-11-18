@@ -85,7 +85,12 @@ class ItemTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _processJump(context),
+      onTap: () {
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text("点击了--->$_title"),
+        ));
+        _processJump(context);
+      },
       child: Container(
         color: _color ?? Colors.pinkAccent,
         child: ListTile(
