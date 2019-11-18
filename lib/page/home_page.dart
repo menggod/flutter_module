@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_module/page/first_page.dart';
-import 'package:toast/toast.dart';
 
 import '../widget/tab_box.dart';
 
@@ -60,8 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _processClick(){
-    Toast.show("double", context,
-        duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+
   }
 
   @override

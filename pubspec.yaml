@@ -32,10 +32,8 @@ dependencies:
   cupertino_icons: ^0.1.2
 
   # third dependencies
-  toast: ^0.1.5
   dio: ^3.0.4
   json_annotation: ^2.0.0
-  fluttertoast: ^3.1.3
   common_utils: ^1.1.3
   fluro: ^1.5.1
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
+
 
 class TapBoxA extends StatefulWidget {
   @override
@@ -16,10 +16,7 @@ class _TapBoxAState extends State<TapBoxA> {
   }
 
   void _handleDoubleClick() {
-    Toast.show("double", context,
-        duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
     _handleTap();
-
   }
 
 
