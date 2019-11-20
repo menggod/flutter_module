@@ -1,15 +1,15 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/rendering.dart';
 import 'package:flutter_module/page/net_test_page.dart';
 import 'package:flutter_module/page/second_page.dart';
 
-import 'page/batter_page.dart';
+import 'page/battery_page.dart';
 import 'page/first_page.dart';
 import 'page/fourth_page.dart';
-import 'page/home_page.dart';
 import 'page/third_page.dart';
-
 
 void main() {
   debugPaintSizeEnabled = false;
@@ -29,7 +29,7 @@ Widget getRouter(String name) {
     case "net_test_page":
       return NetTestPage();
     case "battery_page":
-      return BatterPage();
+      return BatteryPage();
     default:
       return MyAppList();
   }
@@ -45,26 +45,28 @@ class MyAppList extends StatelessWidget {
         "third_page": (context) => ThirdPage(),
         "net_test_page": (context) => NetTestPage(),
         "fourth_page": (context) => TestPage(),
-        "battery_page":(context) => BatterPage()
+        "battery_page": (context) => BatteryPage()
       },
-      onUnknownRoute: (RouteSettings setting) =>
-          MaterialPageRoute(builder: (context) => UnknownPage()),
+      onUnknownRoute: (RouteSettings setting) => MaterialPageRoute(builder: (context) => UnknownPage()),
       theme: ThemeData(
-          brightness: Brightness.light,
-          accentColor: Colors.black,
-          primaryColor: Colors.cyan,
-          iconTheme: IconThemeData(color: Colors.yellow),
-          textTheme: TextTheme(body1: TextStyle(color: Colors.white))),
+        brightness: Brightness.light,
+        accentColor: Colors.black,
+        primaryColor: Colors.cyan,
+        iconTheme: IconThemeData(color: Colors.yellow),
+      ),
       home: Scaffold(
         body: ListView(
           children: <Widget>[
             ItemTitle("first_page", color: Colors.blue),
             ItemTitle("second_page", subTitle: "fade 动画"),
             ItemTitle("third_page", color: Colors.cyan),
-            ItemTitle("net_test_page",
-                color: Colors.amberAccent, subTitle: "网络测试"),
+            ItemTitle("net_test_page", color: Colors.amberAccent, subTitle: "网络测试"),
             ItemTitle("fourth_page", color: Colors.deepOrange),
-            ItemTitle("battery_page", color: Colors.lightBlue,subTitle: "调用原生测试",)
+            ItemTitle(
+              "battery_page",
+              color: Colors.lightBlue,
+              subTitle: "调用原生测试",
+            )
           ],
         ),
       ),
@@ -103,7 +105,10 @@ class ItemTitle extends StatelessWidget {
         child: ListTile(
           leading: Icon(_iconData ?? Icons.settings),
           title: Text(_title),
-          trailing: Text(_subTitle ?? ""),
+          trailing: Text(
+            _subTitle ?? "",
+            style: prefix0.TextStyle(color: Colors.white),
+          ),
         ),
       ),
     );

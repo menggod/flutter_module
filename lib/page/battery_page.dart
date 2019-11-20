@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class BatterPage extends StatefulWidget {
+class BatteryPage extends StatefulWidget {
   @override
-  _BatterPageState createState() => _BatterPageState();
+  _BatteryPageState createState() => _BatteryPageState();
 }
 
-class _BatterPageState extends State<BatterPage> {
+class _BatteryPageState extends State<BatteryPage> {
   static const platform = const MethodChannel("samples.flutter.io/battery");
   String _batteryLevel = "unknown battery level";
 
@@ -26,8 +26,8 @@ class _BatterPageState extends State<BatterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Center(
+    return Scaffold(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -35,7 +35,7 @@ class _BatterPageState extends State<BatterPage> {
               onPressed: _getBatteryLevel,
               child: Text("get battery level"),
             ),
-            Text(_batteryLevel)
+            Text(_batteryLevel??""),
           ],
         ),
       ),
