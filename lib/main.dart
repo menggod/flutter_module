@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_module/page/net_test_page.dart';
 import 'package:flutter_module/page/second_page.dart';
 
+import 'page/batter_page.dart';
 import 'page/first_page.dart';
 import 'page/fourth_page.dart';
 import 'page/home_page.dart';
@@ -19,12 +20,16 @@ void main() {
 
 Widget getRouter(String name) {
   switch (name) {
-    case "route1":
-      return MyApp();
-    case "animator":
-      return FadeAppTest();
     case "first_page":
       return FadeAppTest();
+    case "second_page":
+      return FadeAppTest2();
+    case "third_page":
+      return ThirdPage();
+    case "net_test_page":
+      return NetTestPage();
+    case "battery_page":
+      return BatterPage();
     default:
       return MyAppList();
   }
@@ -39,7 +44,8 @@ class MyAppList extends StatelessWidget {
         "second_page": (context) => FadeAppTest2(),
         "third_page": (context) => ThirdPage(),
         "net_test_page": (context) => NetTestPage(),
-        "fourth_page": (context) => TestPage()
+        "fourth_page": (context) => TestPage(),
+        "battery_page":(context) => BatterPage()
       },
       onUnknownRoute: (RouteSettings setting) =>
           MaterialPageRoute(builder: (context) => UnknownPage()),
@@ -57,7 +63,8 @@ class MyAppList extends StatelessWidget {
             ItemTitle("third_page", color: Colors.cyan),
             ItemTitle("net_test_page",
                 color: Colors.amberAccent, subTitle: "网络测试"),
-            ItemTitle("fourth_page", color: Colors.deepOrange)
+            ItemTitle("fourth_page", color: Colors.deepOrange),
+            ItemTitle("battery_page", color: Colors.lightBlue,subTitle: "调用原生测试",)
           ],
         ),
       ),
