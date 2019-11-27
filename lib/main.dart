@@ -6,6 +6,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_module/page/net_test_page.dart';
 import 'package:flutter_module/page/second_page.dart';
 
+
+
 import 'page/battery_page.dart';
 import 'page/first_page.dart';
 import 'page/fourth_page.dart';
@@ -66,6 +68,11 @@ class MyAppList extends StatelessWidget {
               "battery_page",
               color: Colors.lightBlue,
               subTitle: "调用原生测试",
+            ),
+            ItemTitle(
+              "toast",
+              color: Colors.lightGreenAccent,
+              subTitle: "吐司测试",
             )
           ],
         ),
@@ -88,7 +95,11 @@ class ItemTitle extends StatelessWidget {
   }
 
   void _processJump(BuildContext context) {
-    Navigator.pushNamed(context, _title);
+    if (_title == "toast") {
+    
+    } else {
+      Navigator.pushNamed(context, _title);
+    }
   }
 
   @override
