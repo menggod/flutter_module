@@ -1,22 +1,20 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/rendering.dart';
 import 'package:flutter_module/page/net_test_page.dart';
 import 'package:flutter_module/page/second_page.dart';
 
-
-
 import 'page/battery_page.dart';
 import 'page/first_page.dart';
 import 'page/fourth_page.dart';
+import 'page/list_page_test.dart';
 import 'page/third_page.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
   debugPaintBaselinesEnabled = false;
-  debugPaintLayerBordersEnabled = true;
+  debugPaintLayerBordersEnabled = false;
   runApp(getRouter(window.defaultRouteName));
 }
 
@@ -47,7 +45,8 @@ class MyAppList extends StatelessWidget {
         "third_page": (context) => ThirdPage(),
         "net_test_page": (context) => NetTestPage(),
         "fourth_page": (context) => TestPage(),
-        "battery_page": (context) => BatteryPage()
+        "battery_page": (context) => BatteryPage(),
+        "list_page":(context) => ListPage(),
       },
       onUnknownRoute: (RouteSettings setting) => MaterialPageRoute(builder: (context) => UnknownPage()),
       theme: ThemeData(
@@ -70,9 +69,9 @@ class MyAppList extends StatelessWidget {
               subTitle: "调用原生测试",
             ),
             ItemTitle(
-              "toast",
+              "list_page",
               color: Colors.lightGreenAccent,
-              subTitle: "吐司测试",
+              subTitle: "",
             )
           ],
         ),
@@ -118,7 +117,7 @@ class ItemTitle extends StatelessWidget {
           title: Text(_title),
           trailing: Text(
             _subTitle ?? "",
-            style: prefix0.TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),
