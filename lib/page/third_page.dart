@@ -61,8 +61,8 @@ class _ThirdPageState extends State<ThirdHomePage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-      child: Text(text ?? "状态  demo"),
+    return Scaffold(
+      body: Text(text ?? "状态  demo"),
     );
   }
 }

@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
 
+void main() => runApp(new FirstPage());
 
-void main() => runApp(new FadeAppTest());
-
-class FadeAppTest extends StatelessWidget {
+class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: new MyFadeTest("测试页面"),
+      color: Colors.cyan[100],
+      home: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              RaisedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "net_test_page");
+                },
+                child: Text("网络测试页面"),
+              ),
+              RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "fourth_page");
+                  },
+                  child: Text("fourth_page"))
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -27,8 +46,8 @@ class _MyFadeTestState extends State<MyFadeTest> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    controller = AnimationController(
-        duration: const Duration(milliseconds: 2000), vsync: this);
+    super.initState();
+    controller = AnimationController(duration: const Duration(milliseconds: 2000), vsync: this);
     curvedAnimation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
   }
 

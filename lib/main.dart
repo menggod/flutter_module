@@ -8,6 +8,7 @@ import 'package:flutter_module/page/second_page.dart';
 import 'page/battery_page.dart';
 import 'page/first_page.dart';
 import 'page/fourth_page.dart';
+import 'page/lifecycle_test_page.dart';
 import 'page/list_page_test.dart';
 import 'page/third_page.dart';
 
@@ -21,7 +22,7 @@ void main() {
 Widget getRouter(String name) {
   switch (name) {
     case "first_page":
-      return FadeAppTest();
+      return FirstPage();
     case "second_page":
       return FadeAppTest2();
     case "third_page":
@@ -39,19 +40,22 @@ class MyAppList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorObservers: [MyNavigatorObserver()],
       routes: {
-        "first_page": (context) => FadeAppTest(),
+        "first_page": (context) => FirstPage(),
         "second_page": (context) => FadeAppTest2(),
         "third_page": (context) => ThirdPage(),
         "net_test_page": (context) => NetTestPage(),
         "fourth_page": (context) => TestPage(),
         "battery_page": (context) => BatteryPage(),
-        "list_page":(context) => ListPage(),
+        "list_page": (context) => ListPage(),
+        "StlessLifecyclePage": (context) => StlessLifecyclePage(),
+        "StfullLifecyclePage": (context) => StfullLifecyclePage(),
       },
       onUnknownRoute: (RouteSettings setting) => MaterialPageRoute(builder: (context) => UnknownPage()),
       theme: ThemeData(
         brightness: Brightness.light,
-        accentColor: Colors.black,
+        accentColor: Colors.cyan[100],
         primaryColor: Colors.cyan,
         iconTheme: IconThemeData(color: Colors.yellow),
       ),
@@ -72,6 +76,16 @@ class MyAppList extends StatelessWidget {
               "list_page",
               color: Colors.lightGreenAccent,
               subTitle: "",
+            ),
+            ItemTitle(
+              "StlessLifecyclePage",
+              color: Colors.redAccent,
+              subTitle: "无状态",
+            ),
+            ItemTitle(
+              "StfullLifecyclePage",
+              color: Colors.blueGrey,
+              subTitle: "有状态",
             )
           ],
         ),
@@ -95,7 +109,6 @@ class ItemTitle extends StatelessWidget {
 
   void _processJump(BuildContext context) {
     if (_title == "toast") {
-    
     } else {
       Navigator.pushNamed(context, _title);
     }
@@ -136,5 +149,20 @@ class UnknownPage extends StatelessWidget {
         child: Text("unknown page"),
       ),
     );
+  }
+}
+
+
+class MyNavigatorObserver extends NavigatorObserver{
+  @override
+  void didPush(Route route, Route previousRoute) {
+    super.didPush(route, previousRoute);
+    debugPrint("didPush--->"+route.toString());
+  }
+
+  @override
+  void didPop(Route route, Route previousRoute) {
+    super.didPop(route, previousRoute);
+    debugPrint("didPop--->"+route.toString());
   }
 }

@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _jumpOtherPage() {
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return new FadeAppTest();
+      return new FirstPage();
     }));
   }
 
